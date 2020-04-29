@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 
 app.config['MONGO_DBNAME'] = 'to-do-lists' # Name of database on mongo
-app.config["MONGO_URI"] = "mongodb+srv://sysadm:Ff121314@cluster0-gpxwq.mongodb.net/to-do-lists"
+app.config["MONGO_URI"] = "mongodb+srv://sysadm:Ff121314@cluster0-gpxwq.mongodb.net/to-do-lists" #URI to Atlas cluster  + Auth Credentials
 
 mongo = PyMongo(app)
 
