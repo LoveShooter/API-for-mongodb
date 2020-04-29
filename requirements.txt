@@ -2,7 +2,6 @@ flask
 flask-restful
 gunicorn
 requests
-json
 jsonify
 Flask
 flask_pymongo
