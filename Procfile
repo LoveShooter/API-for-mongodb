@@ -1,1 +1,1 @@
-web: gunicorn app:app
+web: gunicorn api_for_mongodb:app

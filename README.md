@@ -1,1 +1,1 @@
-API in python example
+RESTful API for mongodb
