@@ -5,3 +5,4 @@ requests
 jsonify
 Flask
 flask_pymongo
+pymongo
