@@ -12,16 +12,16 @@ from flask_pymongo import PyMongo
 app = Flask(__name__)
 
 
-app.config['MONGO_DBNAME'] = 'to-do-lists' # name of database on mongo
+app.config['MONGO_DBNAME'] = 'to-do-lists' # Name of database on mongo
 app.config["MONGO_URI"] = "mongodb+srv://sysadm:Ff121314@cluster0-gpxwq.mongodb.net/to-do-lists"
 
 mongo = PyMongo(app)
 
 
 
-@app.route('/getdata', methods=['GET'])  # find all data in my collection
+@app.route('/getdata', methods=['GET'])  # Find all data in my collection
 def get_all_data():
-    todos = mongo.db.todos #connect to my collection
+    todos = mongo.db.todos # Connect to my collection
 
     output = []
 
@@ -35,7 +35,7 @@ def get_all_data():
 @app.route('/getdata/<status>', methods=['GET'])
 def get_one_data(status):
     todos = mongo.db.todos
-    q = todos.find_one({'completed': status}) # find title
+    q = todos.find_one({'completed': status}) # Find by status
     if q:
         output = {'userId': q['userId'], 'id': q['id'], 'title': q['title'], 'completed': q['completed']}
     else:
@@ -45,7 +45,7 @@ def get_one_data(status):
 
 
 
-@app.route('/adddata', methods=['POST']) # add data in db. Need input JSON-like data.
+@app.route('/adddata', methods=['POST']) # Add data in db. Need input JSON-like data.
 def add_data():
     todos = mongo.db.todos
     
@@ -67,20 +67,20 @@ def add_data():
 @app.route('/deldata/<deltatus>', methods=['DELETE'])
 def del_one_data(delstatus):
     todoscoll = mongo.db.todos
-    todoscoll.delete_one({'completed': delstatus}) # delete data by task name
+    todoscoll.delete_one({'completed': delstatus}) # Delete data by Status
 
     return jsonify('Task Delete Sucefully')
 
 
 
-@app.route('/getdataplaceholder', methods=['GET'])  # send a request to the API server and store the response. 
+@app.route('/getdataplaceholder', methods=['GET'])  # Send a request to the API server and store the response. 
 def request_response():
     response = requests.get("https://jsonplaceholder.typicode.com/todos/1")
     todolist = json.loads(response.text)
 
     return todolist
 
-@app.route('/adddataplaceholder', methods=['GET'])  # send a request to the API and add data in mongodb from jsonplaceholder
+@app.route('/adddataplaceholder', methods=['GET'])  # Send a request to the API and add data in mongodb from jsonplaceholder
 
 def add_data_placeholder():
     mycoll = mongo.db.todos
