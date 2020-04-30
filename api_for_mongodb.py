@@ -6,11 +6,12 @@ import requests
 import json, bson
 from flask import Flask, jsonify, request
 from flask_pymongo import PyMongo
-#from pymongo import MongoClient
+from flask_cors import CORS
+
 
 
 app = Flask(__name__)
-
+CORS(app)   # This will enable CORS for all routes
 
 app.config['MONGO_DBNAME'] = 'to-do-lists' # Name of database on mongo
 app.config["MONGO_URI"] = "mongodb+srv://sysadm:Ff121314@cluster0-gpxwq.mongodb.net/to-do-lists" #URI to Atlas cluster  + Auth Credentials
