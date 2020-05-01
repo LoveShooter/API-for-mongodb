@@ -33,16 +33,16 @@ def get_all_data():
 
 
 
-@app.route('/getdata/<status>', methods=['GET'])
-def get_one_data(status):
-    todos = mongo.db.todos
-    q = todos.find_one({'completed': status}) # Find by status
-    if q:
-        output = {'userId': q['userId'], 'id': q['id'], 'title': q['title'], 'completed': q['completed']}
-    else:
-        output = 'No results found!'
-
-    return jsonify({'result': output})
+#@app.route('/getdata/<status>', methods=['GET'])
+#def get_one_data(status):
+#    todos = mongo.db.todos
+#   q = todos.find_one({'completed': bool(status)}) # Find by status
+#    if q:
+#        output = {'completed': q[bool(status)], 'userId': q['userId'], 'id': q['id'], 'title': q['title']}
+#    else:
+#        output = 'No results found!'
+#
+#    return jsonify({'result': output})
 
 
 
@@ -63,14 +63,12 @@ def add_data():
     return jsonify({'result': output})
 
 
-
-
-@app.route('/deldata/<deltatus>', methods=['DELETE'])
-def del_one_data(delstatus):
+@app.route('/deldata/<int:todo_id>', methods=['GET'])
+def del_one_data(todo_id):
     todoscoll = mongo.db.todos
-    todoscoll.delete_one({'completed': delstatus}) # Delete data by Status
+    todoscoll.delete_one({'id': todo_id}) # Delete data by todo ID
 
-    return jsonify('Task Delete Sucefully')
+    return jsonify('Task deleted successfully!')
 
 
 
