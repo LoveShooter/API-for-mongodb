@@ -4,10 +4,10 @@
 import pymongo
 import requests
 import json, bson
+import random
 from flask import Flask, jsonify, request
 from flask_pymongo import PyMongo
 from flask_cors import CORS
-
 
 
 app = Flask(__name__)
@@ -17,7 +17,6 @@ app.config['MONGO_DBNAME'] = 'to-do-lists' # Name of database on mongo
 app.config["MONGO_URI"] = "mongodb+srv://sysadm:Ff121314@cluster0-gpxwq.mongodb.net/to-do-lists" #URI to Atlas cluster  + Auth Credentials
 
 mongo = PyMongo(app)
-
 
 
 @app.route('/getdata', methods=['GET'])  # Find all data in my collection
@@ -80,15 +79,22 @@ def request_response():
     return todolist
 
 @app.route('/adddataplaceholder', methods=['GET'])  # Send a request to the API and add data in mongodb from jsonplaceholder
-
 def add_data_placeholder():
     mycoll = mongo.db.todos
-    url = requests.get('https://jsonplaceholder.typicode.com/todos/21')
+    
+    url1 = 'https://jsonplaceholder.typicode.com/todos/1'
+    url2 = 'https://jsonplaceholder.typicode.com/todos/21'
+    url3 = 'https://jsonplaceholder.typicode.com/todos/32'
+    url4 = 'https://jsonplaceholder.typicode.com/todos/13'
+    url5 = 'https://jsonplaceholder.typicode.com/todos/16'
+    
+    urls = [url1, url2, url3, url4, url5]
+
+    url = requests.get(random.choice(urls))
     todoslist = json.loads(url.text)
     mycoll.insert_one(todoslist)
-
+    
     return todoslist
-
 
 
 if __name__ == '__main__':
