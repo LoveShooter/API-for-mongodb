@@ -13,6 +13,9 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)   # This will enable CORS for all routes
 
+title = "TODO sample application with Flask and MongoDB"
+heading = "TODO Reminder with Flask and MongoDB"
+
 app.config['MONGO_DBNAME'] = 'to-do-lists' # Name of database on mongo
 app.config["MONGO_URI"] = "mongodb+srv://sysadm:Ff121314@cluster0-gpxwq.mongodb.net/to-do-lists" #URI to Atlas cluster  + Auth Credentials
 
