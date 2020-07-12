@@ -1,2 +1,2 @@
-Simple test RESTful API for mongodbl
+Simple test RESTful API for mongodb
 with testing on Heroku
